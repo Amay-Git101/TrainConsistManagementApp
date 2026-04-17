@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class TrainConsistManagementApp {
@@ -11,6 +13,7 @@ public class TrainConsistManagementApp {
     private static Set<String> bogieIds = new HashSet<>();
     private static LinkedList<String> orderedConsist = new LinkedList<>();
     private static LinkedHashSet<String> formation = new LinkedHashSet<>();
+    private static HashMap<String, Integer> capacityMap = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
@@ -29,6 +32,9 @@ public class TrainConsistManagementApp {
 
         setupFormation();
         displayFormation();
+
+        setupCapacityMap();
+        displayCapacityMap();
     }
 
     public static void addPassengerBogies() {
@@ -85,5 +91,17 @@ public class TrainConsistManagementApp {
 
     public static void displayFormation() {
         System.out.println("Final Formation: " + formation);
+    }
+
+    public static void setupCapacityMap() {
+        capacityMap.put("Sleeper", 72);
+        capacityMap.put("AC Chair", 60);
+        capacityMap.put("First Class", 24);
+    }
+
+    public static void displayCapacityMap() {
+        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+            System.out.println(entry.getKey() + " Capacity: " + entry.getValue());
+        }
     }
 }
