@@ -1,29 +1,20 @@
-import java.util.Arrays;
-
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        String[] bogieIds = {"BG309","BG101","BG550","BG205","BG412"};
-        String searchKey = "BG309";
+        String[] bogieIds = {};
+        String searchKey = "BG101";
 
-        Arrays.sort(bogieIds);
+        if (bogieIds.length == 0) {
+            throw new IllegalStateException("No bogies available for search");
+        }
 
-        int low = 0;
-        int high = bogieIds.length - 1;
         boolean found = false;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;
-            int result = bogieIds[mid].compareTo(searchKey);
-
-            if (result == 0) {
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(searchKey)) {
                 found = true;
                 break;
-            } else if (result < 0) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
             }
         }
 
