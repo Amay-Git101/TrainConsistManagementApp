@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 class Bogie {
     String name;
@@ -55,6 +56,8 @@ public class TrainConsistManagementApp {
         setupBogieObjects();
         sortBogies();
         displaySortedBogies();
+
+        filterBogies();
     }
 
     public static void addPassengerBogies() {
@@ -138,6 +141,17 @@ public class TrainConsistManagementApp {
     public static void displaySortedBogies() {
         System.out.println("Sorted Bogies by Capacity:");
         for (Bogie b : bogieList) {
+            System.out.println(b);
+        }
+    }
+
+    public static void filterBogies() {
+        List<Bogie> filtered = bogieList.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
+
+        System.out.println("Filtered Bogies (Capacity > 60):");
+        for (Bogie b : filtered) {
             System.out.println(b);
         }
     }
